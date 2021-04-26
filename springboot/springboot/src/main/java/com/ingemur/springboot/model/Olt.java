@@ -24,7 +24,7 @@ public class Olt {
 	@Column(name = "description")
 	private String description;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "olt_port")
 	private Collection<Port> ports;
 	
 	public Olt() {

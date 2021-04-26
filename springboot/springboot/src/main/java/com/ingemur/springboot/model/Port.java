@@ -1,11 +1,14 @@
 package com.ingemur.springboot.model;
 
+import java.util.Collection;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +16,7 @@ import javax.persistence.Table;
 public class Port {
 
 	@EmbeddedId
-	protected PortId id;
+	protected PortId portId;
 	
 	@Column(name = "slot")
 	private String slot;
@@ -26,14 +29,17 @@ public class Port {
 	
 	@JoinColumn(name = "olt", referencedColumnName = "ip_address", nullable = false, insertable = false, updatable = false)
 	@ManyToOne(cascade = CascadeType.ALL)
-	private Olt olt;
+	private Olt olt_port;
+	
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "port")
+    private Collection<Service> serviceCollection;
 
 	public PortId getId() {
-		return id;
+		return portId;
 	}
 
 	public void setId(PortId id) {
-		this.id = id;
+		this.portId = id;
 	}
 
 	public String getSlot() {
@@ -61,20 +67,20 @@ public class Port {
 	}
 
 	public Olt getOlt() {
-		return olt;
+		return olt_port;
 	}
 
 	public void setOlt(Olt olt) {
-		this.olt = olt;
+		this.olt_port = olt;
 	}
 
 	public Port(PortId id, String slot, String pon, String description, Olt olt) {
 		super();
-		this.id = id;
+		this.portId = id;
 		this.slot = slot;
 		this.pon = pon;
 		this.description = description;
-		this.olt = olt;
+		this.olt_port = olt;
 	}
 
 	public Port() {
