@@ -21,7 +21,7 @@ import com.ingemur.springboot.model.User;
 
 
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
-
+	
 	private AuthenticationManager authenticationManager;
 	
 	public AuthenticationFilter (AuthenticationManager authenticationManager) {
@@ -35,7 +35,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 			User creds = new ObjectMapper().readValue(request.getInputStream(), User.class);
 			return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(creds.getUsername(), creds.getPassword(), new ArrayList<>()));
 		} catch (IOException e) {
-			throw new RuntimeException("Could not read request" + e);
+			throw new RuntimeException("Could not read request " + e);
 		}
 	}
 	

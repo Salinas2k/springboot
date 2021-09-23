@@ -2,7 +2,6 @@ package com.ingemur.springboot.model;
 
 import java.util.Collection;
 
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;

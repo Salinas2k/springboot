@@ -1,5 +1,7 @@
 package com.ingemur.springboot.security;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -46,3 +48,5 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
 		return source;
 	}
 }
+
+
