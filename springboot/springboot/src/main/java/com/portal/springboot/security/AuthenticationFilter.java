@@ -45,5 +45,12 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 				.withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstrants.EXPIRATION_TIME))
 				.sign(Algorithm.HMAC512(SecurityConstrants.SECRET.getBytes()));
 		response.addHeader(SecurityConstrants.HEADER_STRING, SecurityConstrants.TOKEN_PREFIX + token);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		try {
+			response.getWriter().write("{\"" + SecurityConstrants.TOKEN_PREFIX + "\":\"" + token + "\"}");
+		} catch (IOException e) {
+			System.out.println("Error al escribir el token en el body: " + e.getMessage());
+		}
 	}
 }

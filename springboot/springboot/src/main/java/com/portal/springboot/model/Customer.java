@@ -35,8 +35,8 @@ public class Customer {
 	@Column(name = "province")
 	private String province;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
-    private Collection<Service> serviceCollection;
+	//@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    //private Collection<Service> serviceCollection;
 
 	public Customer() {
 		super();
@@ -99,11 +99,11 @@ public class Customer {
 		this.province = province;
 	}
 	
-	public Collection<Service> getServiceCollection() {
+	/*public Collection<Service> getServiceCollection() {
 		return serviceCollection;
 	}
 	
 	public void setServiceCollection(Collection<Service> serviceCollection) {
 		this.serviceCollection = serviceCollection;
-	}
+	}*/
 }
