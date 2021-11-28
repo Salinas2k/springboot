@@ -30,7 +30,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.POST, SecurityConstrants.SIGN_UP_URL)
 				.hasAnyAuthority("OPERATOR", "ADMINISTRATOR").anyRequest().authenticated().and()
 				.addFilter(new AuthenticationFilter(authenticationManager()))
-				.addFilter(new AuthoritationFilter(authenticationManager())).sessionManagement()
+				.addFilter(new AuthorizationFilter(authenticationManager())).sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 

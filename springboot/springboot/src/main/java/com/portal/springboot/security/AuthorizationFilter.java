@@ -16,20 +16,17 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 
+public class AuthorizationFilter extends BasicAuthenticationFilter {
 
-public class AuthoritationFilter extends BasicAuthenticationFilter {
-	
-	public AuthoritationFilter(AuthenticationManager authenticationManager) {
+	public AuthorizationFilter(AuthenticationManager authenticationManager) {
 		super(authenticationManager);
 	}
-	
+
 	private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
 		String token = request.getHeader(SecurityConstrants.HEADER_STRING);
 		if (token != null) {
-			String user = JWT.require(Algorithm.HMAC512(SecurityConstrants.SECRET.getBytes()))
-					.build()
-					.verify(token.replace(SecurityConstrants.TOKEN_PREFIX, ""))
-					.getSubject();
+			String user = JWT.require(Algorithm.HMAC512(SecurityConstrants.SECRET.getBytes())).build()
+					.verify(token.replace(SecurityConstrants.TOKEN_PREFIX, "")).getSubject();
 			if (user != null) {
 				return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
 			}
@@ -39,7 +36,7 @@ public class AuthoritationFilter extends BasicAuthenticationFilter {
 	}
 
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-		throws IOException, ServletException {
+			throws IOException, ServletException {
 		String header = request.getHeader(SecurityConstrants.HEADER_STRING);
 		if (header == null || !header.startsWith(SecurityConstrants.TOKEN_PREFIX)) {
 			filterChain.doFilter(request, response);
