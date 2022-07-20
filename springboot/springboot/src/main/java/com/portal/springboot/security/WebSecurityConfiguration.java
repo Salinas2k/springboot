@@ -26,12 +26,22 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.cors().and().csrf().disable().authorizeRequests()
-				.antMatchers(HttpMethod.POST, SecurityConstrants.SIGN_UP_URL)
-				.hasAnyAuthority("OPERATOR", "ADMINISTRATOR").anyRequest().authenticated().and()
-				.addFilter(new AuthenticationFilter(authenticationManager()))
-				.addFilter(new AuthorizationFilter(authenticationManager())).sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		httpSecurity.cors();/*
+							 * .and().csrf().disable().authorizeRequests()
+							 * .antMatchers(HttpMethod.POST,
+							 * SecurityConstrants.SIGN_UP_URL)
+							 * .hasAnyAuthority("OPERATOR",
+							 * "ADMINISTRATOR").anyRequest().authenticated()
+							 * .and()
+							 * .addFilter(new
+							 * AuthenticationFilter(authenticationManager())
+							 * )
+							 * .addFilter(new
+							 * AuthorizationFilter(authenticationManager()))
+							 * .sessionManagement()
+							 * .sessionCreationPolicy(SessionCreationPolicy.
+							 * STATELESS);
+							 */
 	}
 
 	@Override

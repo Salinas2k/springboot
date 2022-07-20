@@ -23,6 +23,9 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	@Column(name = "dni")
+	private String dni;
+
 	@Column(name = "name")
 	private String name;
 
@@ -66,8 +69,9 @@ public class Customer {
 		super();
 	}
 
-	public Customer(String name, String address, String email, Date dateBirth, String phone, String surname,
+	public Customer(String dni, String name, String address, String email, Date dateBirth, String phone, String surname,
 			String profession, String company) {
+		this.dni = dni;
 		this.name = name;
 		this.address = address;
 		this.email = email;
@@ -80,8 +84,9 @@ public class Customer {
 		this.medicalData = null;
 	}
 
-	public Customer(String name, String address, String email, Date dateBirth, String phone, String surname,
+	public Customer(String dni, String name, String address, String email, Date dateBirth, String phone, String surname,
 			String profession, String company, boolean volunteer) {
+		this.dni = dni;
 		this.name = name;
 		this.address = address;
 		this.email = email;
@@ -94,8 +99,9 @@ public class Customer {
 		this.medicalData = null;
 	}
 
-	public Customer(String name, String address, String email, Date dateBirth, String phone, String surname,
+	public Customer(String dni, String name, String address, String email, Date dateBirth, String phone, String surname,
 			String profession, String company, boolean volunteer, MedicalData medicalData) {
+		this.dni = dni;
 		this.name = name;
 		this.address = address;
 		this.email = email;
@@ -110,6 +116,14 @@ public class Customer {
 
 	public long getId() {
 		return id;
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 	public Date getDateBirth() {
